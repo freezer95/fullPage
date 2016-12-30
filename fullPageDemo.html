@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fullPageDemo</title>
+    <style rel="stylesheet" type="text/css" href="fullPage.css"></style>
+</head>
+<body>
+
+<script>
+    // 自适应布局
+    !(function (doc, win) {
+        var docEle = doc.documentElement,
+                evt = "onorientationchange" in window ? "orientationchange" : "resize",
+                fn = function () {
+                    var width = docEle.clientWidth;
+                    width && (docEle.style.fontSize = (width / 7.5).toFixed(2) + "px");
+                };
+
+        win.addEventListener(evt, fn, false);
+        doc.addEventListener("DOMContentLoaded", fn, false);
+
+    }(document, window));
+</script>
+<script type="javascript" src="jquery.js"></script>
+<script type="javascript" src="fullPage.js"></script>
+<script>
+    $(function () {
+        $("#main").fullpage({
+            resize: true,
+            afterLoad: function (anchorLink,index) {
+                if (index == 2) {
+                    changeNum('doctor-num', 0, 50, 1); // 医生数动画
+                    changeNum('patient-num', 0, 9200, 1); // 患者数动画
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
